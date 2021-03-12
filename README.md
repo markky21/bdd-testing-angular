@@ -25,3 +25,29 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Acceptance criteria
+
+
+1. Użytkownik po uruchumieniu aplikacji powinien zobaczyć:
+   
+a) listę swoich wydatków w danym miesiącub) podsumowanie wydatków w miesiącuc) formularz do wprowadzenia nowego wydatku dla danego miesiąca
+
+d) nawigację służącą do wybrania miesiąca
+
+2. Rekord wydatku powinien zawierać informacje o:
+   
+a) dacie wydatku
+
+b) kwocie wydatku
+
+c) kategorii wydatku
+
+3. Nawigacja miesiąca powinna:
+   
+a) na początku wskazywać aktualny miesiąc
+
+b) umożliwiać wybranie miesiące od aktualnego do wstecz
+
+4. Informacje o wydatkach powinny być przechowywane w pamięci przeglądarki
+
