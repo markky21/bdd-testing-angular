@@ -1,0 +1,12 @@
+.Wrapper {
+  //display: block;
+}
+.Form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  > * {
+    margin-right: 24px;
+  }
+}
