@@ -109,4 +109,36 @@ describe('MonthSelectorComponent', () => {
     fixture.detectChanges();
     expect(getInputMothSelector()?.value).toContain(moment().format(DATE_FORMATS.display.dateInput).toString());
   });
+
+  it('should allow user to select year in the past', async () => {
+    const spyListOfExpensesService = spyOn(listOfExpensesService.selectedMonth$, 'next');
+    getInputMothSelectorToggle()?.click();
+    fixture.detectChanges();
+    expect(getMatCalendarContent()).toBeTruthy();
+
+    // Select previous year in datepicker
+    getMatCalendarContent()?.querySelector('.mat-calendar-period-button')?.dispatchEvent(new MouseEvent('click'));
+    fixture.detectChanges();
+    getMatCalendarContent()?.querySelector('.mat-calendar-period-button')?.dispatchEvent(new MouseEvent('click'));
+    fixture.detectChanges();
+    getMatCalendarContent()
+      ?.querySelectorAll('.mat-calendar-body-cell')
+      ?.item(0)
+      .dispatchEvent(new MouseEvent('click'));
+    fixture.detectChanges();
+
+    // Select previous month in datepicker
+    getMatCalendarContent()
+      ?.querySelectorAll('.mat-calendar-body .mat-calendar-body-cell')
+      .item(2)
+      .dispatchEvent(new MouseEvent('click'));
+    fixture.detectChanges();
+    expect(getInputMothSelector()?.value).toContain(
+      moment(new Date(1997, 2, 21)).format(DATE_FORMATS.display.dateInput).toString()
+    );
+
+    // Check if new value was send
+    // @ts-ignore
+    expect(spyListOfExpensesService.calls.argsFor(0).toString()).toEqual(moment(new Date(1997, 2, 21)).toString());
+  });
 });

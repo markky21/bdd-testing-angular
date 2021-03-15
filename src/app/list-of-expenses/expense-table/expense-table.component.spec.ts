@@ -5,9 +5,9 @@ import { ListOfExpensesService } from '../list-of-expenses.service';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { mockExpenseList } from '../list-of-expenses.mocks';
 import { MatTableModule } from '@angular/material/table';
-import {} from 'rxjs/testing';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import {of} from 'rxjs';
+import { of } from 'rxjs';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 describe('ExpenseTableComponent', () => {
   let component: ExpenseTableComponent;
@@ -47,27 +47,40 @@ describe('ExpenseTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should display section title', () => {
+    getTestScheduler().flush();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('h4').innerHTML).toContain('Expenses');
   });
 
-  describe('should present table with headings', () => {
-    it('expense date', () => {
-      getTestScheduler().flush();
-      fixture.detectChanges();
-      expect(getExpenseTable()?.querySelector('[test-id="expenseTable-headerDate"]')?.innerHTML).toContain('Date');
-    });
-    it('expense category', () => {
-      getTestScheduler().flush();
-      fixture.detectChanges();
-      expect(getExpenseTable()?.querySelector('[test-id="expenseTable-headerCategory"]')?.innerHTML).toContain(
-        'Category'
-      );
-    });
-    it('expense amount', () => {
-      getTestScheduler().flush();
-      fixture.detectChanges();
-      expect(getExpenseTable()?.querySelector('[test-id="expenseTable-headerAmount"]')?.innerHTML).toContain('Amount');
-    });
+  it('should present table with headings', () => {
+    getTestScheduler().flush();
+    fixture.detectChanges();
+    expect(getExpenseTable()?.querySelector('[test-id="expenseTable-headerDate"]')?.innerHTML).toContain('Date');
+    expect(getExpenseTable()?.querySelector('[test-id="expenseTable-headerCategory"]')?.innerHTML).toContain(
+      'Category'
+    );
+    expect(getExpenseTable()?.querySelector('[test-id="expenseTable-headerAmount"]')?.innerHTML).toContain('Amount');
+  });
+
+  it('should present table data', () => {
+    getTestScheduler().flush();
+    fixture.detectChanges();
+
+    getExpenseTable()
+      ?.querySelectorAll('[test-id="expenseTable-cellDate"]')
+      .forEach((el, i) => {
+        expect(el.innerHTML).toContain(new DatePipe('en_US').transform(mockExpenseList[i].date) as string);
+      });
+    getExpenseTable()
+      ?.querySelectorAll('[test-id="expenseTable-cellCategory"]')
+      .forEach((el, i) => {
+        expect(el.innerHTML).toContain(mockExpenseList[i].category);
+      });
+    getExpenseTable()
+      ?.querySelectorAll('[test-id="expenseTable-cellAmount"]')
+      .forEach((el, i) => {
+        expect(el.innerHTML).toContain(new CurrencyPipe('en_US').transform(mockExpenseList[i].amount) as string);
+      });
   });
 });

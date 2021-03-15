@@ -12,7 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [ListOfExpensesComponent, ExpenseTableComponent, MonthSelectorComponent, ExpenseFormComponent],

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ListOfExpensesService } from '../list-of-expenses.service';
 import { of } from 'rxjs';
+import { getTestScheduler } from 'jasmine-marbles';
 
 describe('ExpenseFormComponent', () => {
   let component: ExpenseFormComponent;
@@ -26,7 +27,6 @@ describe('ExpenseFormComponent', () => {
   const getInputCategorySelector = () => getTemplate().querySelector('[test-id="inputCategory"]') as HTMLElement | null;
   const getSubmitButton = () => getTemplate().querySelector('[test-id="buttonSubmit"]') as HTMLButtonElement | null;
 
-  // TODO: czy powinnimy zawsze ręcznie dodawać module def?
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ExpenseFormComponent],
@@ -55,8 +55,10 @@ describe('ExpenseFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should display section title', () => {
+    getTestScheduler().flush();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('h4').innerHTML).toContain('Add new expense');
   });
 
   it('should user to see form on init', () => {

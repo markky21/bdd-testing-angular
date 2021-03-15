@@ -7,7 +7,6 @@ describe('ListOfExpensesComponent', () => {
   let component: ListOfExpensesComponent;
   let fixture: ComponentFixture<ListOfExpensesComponent>;
 
-  // NOTE: changed to beforeAll
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ListOfExpensesComponent],

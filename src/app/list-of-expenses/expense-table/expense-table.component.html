@@ -4,28 +4,30 @@
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef [attr.test-id]="'expenseTable-headerID'">ID.</th>
-      <td mat-cell *matCellDef="let expense">{{ expense.id }}</td>
+      <td mat-cell *matCellDef="let expense" [attr.test-id]="'expenseTable-cellID'">{{ expense.id }}</td>
       <td mat-footer-cell *matFooterCellDef>Total</td>
     </ng-container>
 
     <!-- Date Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef [attr.test-id]="'expenseTable-headerDate'">Date</th>
-      <td mat-cell *matCellDef="let expense">{{ expense.date | date }}</td>
+      <td mat-cell *matCellDef="let expense" [attr.test-id]="'expenseTable-cellDate'">{{ expense.date | date }}</td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Category Column -->
     <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef [attr.test-id]="'expenseTable-headerCategory'">Category</th>
-      <td mat-cell *matCellDef="let expense">{{ expense.category }}</td>
+      <td mat-cell *matCellDef="let expense" [attr.test-id]="'expenseTable-cellCategory'">{{ expense.category }}</td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Amount Column -->
     <ng-container matColumnDef="amount">
       <th mat-header-cell *matHeaderCellDef [attr.test-id]="'expenseTable-headerAmount'">Amount</th>
-      <td mat-cell *matCellDef="let expense">{{ expense.amount | currency }}</td>
+      <td mat-cell *matCellDef="let expense" [attr.test-id]="'expenseTable-cellAmount'">
+        {{ expense.amount | currency }}
+      </td>
       <td mat-footer-cell *matFooterCellDef>{{ totalAmount$ | async | currency }}</td>
     </ng-container>
 
