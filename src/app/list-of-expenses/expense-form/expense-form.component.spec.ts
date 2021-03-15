@@ -11,6 +11,7 @@ import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ListOfExpensesService } from '../list-of-expenses.service';
 import { of } from 'rxjs';
 import { getTestScheduler } from 'jasmine-marbles';
+import {ExpenseCategory} from '../list-of-expenses.model';
 
 describe('ExpenseFormComponent', () => {
   let component: ExpenseFormComponent;
@@ -73,13 +74,13 @@ describe('ExpenseFormComponent', () => {
       return of([]);
     });
     // Set Date
-    // @ts-ignore
-    getInputDateSelector()?.value = moment().format('M/DD/YYYY');
+    // tslint:disable-next-line:no-non-null-assertion
+    getInputDateSelector()!.value = moment().format('M/DD/YYYY');
     getInputAmountSelector()?.dispatchEvent(new Event('input'));
 
     // Set Amount
-    // @ts-ignore
-    getInputAmountSelector()?.value = '123';
+    // tslint:disable-next-line:no-non-null-assertion
+    getInputAmountSelector()!.value = '123';
     getInputAmountSelector()?.dispatchEvent(new Event('input'));
 
     // Select Category
@@ -91,7 +92,6 @@ describe('ExpenseFormComponent', () => {
     // Submit form
     getSubmitButton()?.click();
     fixture.detectChanges();
-    // @ts-ignore
-    expect(spyDbAdd).toHaveBeenCalledOnceWith({ date: '', amount: 123, category: 'HOME' });
+    expect(spyDbAdd).toHaveBeenCalledOnceWith({ date: '', amount: 123, category: ExpenseCategory.HOME });
   });
 });

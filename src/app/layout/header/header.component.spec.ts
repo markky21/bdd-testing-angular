@@ -12,9 +12,7 @@ describe('HeaderComponent', () => {
       declarations: [HeaderComponent],
       imports: [MatToolbarModule],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

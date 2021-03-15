@@ -40,7 +40,9 @@ export class MonthSelectorComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+  }
 
   chosenYearHandler(normalizedYear: moment.Moment): void {
     const ctrlValue = this.date.value;

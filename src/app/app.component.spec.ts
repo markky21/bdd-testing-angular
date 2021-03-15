@@ -2,8 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
+// NOTE: If a component is only used to display an assembly of components,
+// then we should do a test to see if these components are visible in the DOM.
+// However, we don't need to bootstrap these components,
+// so we should omit including dependencies in ModuleDef and set NO_ERRORS_SCHEMA
+
 describe('AppComponent', () => {
-  let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
@@ -13,7 +17,6 @@ describe('AppComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

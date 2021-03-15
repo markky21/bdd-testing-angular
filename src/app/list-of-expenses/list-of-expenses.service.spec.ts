@@ -6,23 +6,27 @@ import { cold } from 'jasmine-marbles';
 import MockDate from 'mockdate';
 import * as moment from 'moment';
 
+// NOTE: To be able to test class methods we don't need to use TestBed
+// for set application environment (dependencies in this case).
+// We can create class instance and provide dependencies manually
+
+// NOTE: For RxJs streams we should use write marble tests: https://rxjs-dev.firebaseapp.com/guide/testing/internal-marble-tests
+
 describe('ListOfExpensesService', () => {
   const currentDate = new Date(2020, 3, 21);
 
   let service: ListOfExpensesService;
   let spyNgxIndexedDBService: jasmine.SpyObj<NgxIndexedDBService<Expense>>;
 
-  beforeEach(() => {
-    spyNgxIndexedDBService = jasmine.createSpyObj('NgxIndexedDBService', ['createObjectStore', 'getAll', 'add']);
-    service = new ListOfExpensesService(spyNgxIndexedDBService);
-  });
-
   beforeAll(() => {
     MockDate.set(currentDate);
   });
-
   afterAll(() => {
     MockDate.reset();
+  });
+  beforeEach(() => {
+    spyNgxIndexedDBService = jasmine.createSpyObj('NgxIndexedDBService', ['createObjectStore', 'getAll', 'add']);
+    service = new ListOfExpensesService(spyNgxIndexedDBService);
   });
 
   describe('expenses history', () => {

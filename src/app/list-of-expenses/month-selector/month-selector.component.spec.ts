@@ -64,15 +64,24 @@ describe('MonthSelectorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should initially set to current month', () => {
+    fixture.detectChanges();
     const spySelectedMonths$ = spyOn(listOfExpensesService.selectedMonth$, 'next');
     component.ngOnInit();
     expect(spySelectedMonths$).toHaveBeenCalledOnceWith(moment());
     expect(getInputMothSelector()?.value).toContain(moment().format(DATE_FORMATS.display.dateInput).toString());
+  });
+
+  it('should on destroy clean subscription', () => {
+    const spyListOfExpensesService = spyOn(listOfExpensesService.selectedMonth$, 'next');
+
+    component.ngOnDestroy();
+    // tslint:disable-next-line:no-non-null-assertion
+    getInputMothSelector()!.value = moment().add(-1, 'months').format(DATE_FORMATS.display.dateInput).toString();
+    getInputMothSelector()?.dispatchEvent(new Event('input'));
+
+    // Check if new value was send
+    expect(spyListOfExpensesService).not.toHaveBeenCalled();
   });
 
   it('should allow user to select months in the past', async () => {
@@ -92,7 +101,6 @@ describe('MonthSelectorComponent', () => {
     );
 
     // Check if new value was send
-    // @ts-ignore
     expect(spyListOfExpensesService).toHaveBeenCalledOnceWith(moment().add(-1, 'months'));
   });
 
@@ -138,7 +146,6 @@ describe('MonthSelectorComponent', () => {
     );
 
     // Check if new value was send
-    // @ts-ignore
     expect(spyListOfExpensesService.calls.argsFor(0).toString()).toEqual(moment(new Date(1997, 2, 21)).toString());
   });
 });
