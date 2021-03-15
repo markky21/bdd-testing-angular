@@ -11,7 +11,10 @@ import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ListOfExpensesService } from '../list-of-expenses.service';
 import { of } from 'rxjs';
 import { getTestScheduler } from 'jasmine-marbles';
-import {ExpenseCategory} from '../list-of-expenses.model';
+import { ExpenseCategory } from '../list-of-expenses.model';
+
+// NOTE: In Angular Component tests we should mainly focus on testing component DOM structure changes
+// and less on how things are implemented.
 
 describe('ExpenseFormComponent', () => {
   let component: ExpenseFormComponent;

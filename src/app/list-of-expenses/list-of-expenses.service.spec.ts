@@ -10,7 +10,11 @@ import * as moment from 'moment';
 // for set application environment (dependencies in this case).
 // We can create class instance and provide dependencies manually
 
-// NOTE: For RxJs streams we should use write marble tests: https://rxjs-dev.firebaseapp.com/guide/testing/internal-marble-tests
+// NOTE: For RxJs streams we should use write marble tests:
+// https://rxjs-dev.firebaseapp.com/guide/testing/internal-marble-tests
+
+// NOTE: With our tests we should mock as much as possible.
+// Also we should keep on mind that we should not test functionalities of external libraries.
 
 describe('ListOfExpensesService', () => {
   const currentDate = new Date(2020, 3, 21);

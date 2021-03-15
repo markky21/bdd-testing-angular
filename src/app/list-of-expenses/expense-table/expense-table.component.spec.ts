@@ -9,6 +9,9 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { of } from 'rxjs';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 
+// NOTE: In Angular Component tests we should mainly focus on testing component DOM structure changes
+// and less on how things are implemented.
+
 describe('ExpenseTableComponent', () => {
   let component: ExpenseTableComponent;
   let fixture: ComponentFixture<ExpenseTableComponent>;
