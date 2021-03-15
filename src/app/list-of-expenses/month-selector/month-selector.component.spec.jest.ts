@@ -1,19 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MonthSelectorComponent } from './month-selector.component';
-import { ListOfExpensesService } from '../list-of-expenses.service';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {MonthSelectorComponent} from './month-selector.component';
+import {ListOfExpensesService} from '../list-of-expenses.service';
 import MockDate from 'mockdate';
-import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import moment from 'moment';
-import { DATE_FORMATS } from '../../utils/dates.utils';
-import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
-import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { of } from 'rxjs';
-import { mockExpenseList } from '../list-of-expenses.mocks';
+import {DATE_FORMATS} from '../../utils/dates.utils';
+import {Overlay, OverlayContainer} from '@angular/cdk/overlay';
+import {ListOfExpensesServiceStub} from '../list-of-expenses.service.stub';
 
 describe('MonthSelectorComponent', () => {
   const currentDate = new Date(2020, 3, 21);
@@ -22,8 +19,6 @@ describe('MonthSelectorComponent', () => {
   let listOfExpensesService: ListOfExpensesService;
   let overlay: Overlay;
   let overlayContainer: OverlayContainer;
-
-  let spyNgxIndexedDBService: jasmine.SpyObj<NgxIndexedDBService>;
 
   const getTemplate = (): HTMLElement => fixture.debugElement.nativeElement;
   const getInputMothSelector = () =>
@@ -44,17 +39,10 @@ describe('MonthSelectorComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [MonthSelectorComponent],
-      providers: [
-        {
-          provide: NgxIndexedDBService,
-          useValue: jasmine.createSpyObj('NgxIndexedDBService', ['createObjectStore', 'getAll', 'add']),
-        },
-      ],
+      providers: [{ provide: ListOfExpensesService, useClass: ListOfExpensesServiceStub }],
       imports: [MatInputModule, MatDatepickerModule, ReactiveFormsModule, MatNativeDateModule, NoopAnimationsModule],
     }).compileComponents();
 
-    spyNgxIndexedDBService = TestBed.inject(NgxIndexedDBService) as jasmine.SpyObj<NgxIndexedDBService>;
-    spyNgxIndexedDBService.getAll.and.returnValue(of(mockExpenseList));
     listOfExpensesService = TestBed.inject(ListOfExpensesService);
     overlayContainer = TestBed.inject(OverlayContainer);
     overlay = TestBed.inject(Overlay);
@@ -64,11 +52,15 @@ describe('MonthSelectorComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should display page components', () => {
+    expect(fixture).toMatchSnapshot();
+  });
+
   it('should initially set to current month', () => {
     fixture.detectChanges();
     const spySelectedMonths$ = spyOn(listOfExpensesService.selectedMonth$, 'next');
     component.ngOnInit();
-    expect(spySelectedMonths$).toHaveBeenCalledOnceWith(moment());
+    expect(spySelectedMonths$).toHaveBeenCalledWith(moment());
     expect(getInputMothSelector()?.value).toContain(moment().format(DATE_FORMATS.display.dateInput).toString());
   });
 
@@ -101,7 +93,7 @@ describe('MonthSelectorComponent', () => {
     );
 
     // Check if new value was send
-    expect(spyListOfExpensesService).toHaveBeenCalledOnceWith(moment().add(-1, 'months'));
+    expect(spyListOfExpensesService).toHaveBeenCalledWith(moment().add(-1, 'months'));
   });
 
   it('should disallow user to select months in the feature', () => {

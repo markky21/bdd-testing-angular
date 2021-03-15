@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonthSelectorComponent should display page components 1`] = `
+<app-month-selector
+  date={[Function FormControl]}
+  destroyed$={[Function Subject]}
+  listOfExpensesService={[Function ListOfExpensesServiceStub]}
+  maxDate={[Function Date]}
+>
+  <mat-form-field
+    appearance="fill"
+    class="Wrapper mat-form-field mat-primary mat-form-field-type-mat-input mat-form-field-appearance-fill mat-form-field-can-float mat-form-field-should-float mat-form-field-has-label ng-untouched ng-pristine ng-valid _mat-animation-noopable"
+  >
+    <div
+      class="mat-form-field-wrapper"
+    >
+      <div
+        class="mat-form-field-flex"
+      >
+        
+        
+        <div
+          class="mat-form-field-infix"
+        >
+          <input
+            aria-haspopup="dialog"
+            aria-invalid="false"
+            aria-required="false"
+            class="mat-datepicker-input mat-input-element mat-form-field-autofill-control ng-untouched ng-pristine ng-valid cdk-text-field-autofill-monitored"
+            data-mat-calendar="mat-datepicker-0"
+            matinput=""
+            max="2020-04-21T00:00:00+02:00"
+            test-id="inputMonthSelector"
+          />
+          <mat-datepicker
+            startview="year"
+          />
+          <span
+            class="mat-form-field-label-wrapper"
+          >
+            
+            <label
+              class="mat-form-field-label"
+            >
+              
+              
+              <mat-label>
+                Month and Year
+              </mat-label>
+              
+              
+            </label>
+          </span>
+        </div>
+        
+        <div
+          class="mat-form-field-suffix"
+        >
+          <mat-datepicker-toggle
+            class="mat-datepicker-toggle"
+            data-mat-calendar="mat-datepicker-0"
+            matsuffix=""
+            test-id="inputMonthSelectorToggle"
+          >
+            <button
+              aria-haspopup="dialog"
+              aria-label="Open calendar"
+              class="mat-focus-indicator mat-icon-button mat-button-base _mat-animation-noopable"
+              mat-icon-button=""
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                
+                <svg
+                  class="mat-datepicker-toggle-default-icon"
+                  fill="currentColor"
+                  focusable="false"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                >
+                  <path
+                    d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                matripple=""
+              />
+              <span
+                class="mat-button-focus-overlay"
+              />
+            </button>
+          </mat-datepicker-toggle>
+        </div>
+      </div>
+      
+      <div
+        class="mat-form-field-underline"
+      >
+        <span
+          class="mat-form-field-ripple"
+        />
+      </div>
+      <div
+        class="mat-form-field-subscript-wrapper"
+      >
+        
+        
+        <div
+          class="mat-form-field-hint-wrapper ng-trigger ng-trigger-transitionMessages"
+          style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+        >
+          
+          <div
+            class="mat-form-field-hint-spacer"
+          />
+        </div>
+      </div>
+    </div>
+  </mat-form-field>
+</app-month-selector>
+`;

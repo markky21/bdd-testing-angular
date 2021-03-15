@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListOfExpensesComponent should display page components 1`] = `
+<app-list-of-expenses>
+  <mat-card
+    class="Wrapper"
+  >
+    <mat-card-header>
+      <mat-card-title>
+        List of expenses
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-month-selector />
+      <app-expense-table />
+      <app-expense-form />
+    </mat-card-content>
+  </mat-card>
+</app-list-of-expenses>
+`;

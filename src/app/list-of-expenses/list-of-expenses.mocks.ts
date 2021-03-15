@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { Expense, ExpenseCategory } from './list-of-expenses.model';
 
 export const mockExpenseList: Expense[] = [

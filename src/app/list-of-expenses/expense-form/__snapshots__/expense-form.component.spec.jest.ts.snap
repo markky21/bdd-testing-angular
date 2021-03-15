@@ -1,0 +1,310 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpenseFormComponent should display page components 1`] = `
+<app-expense-form
+  expenseCategory={[Function Array]}
+  form={[Function FormGroup]}
+  formBuilder={[Function FormBuilder]}
+  listOfExpensesService={[Function ListOfExpensesServiceStub]}
+>
+  <section
+    class="Wrapper"
+  >
+    <h4>
+      Add new expense
+    </h4>
+    <form
+      class="Form ng-untouched ng-pristine ng-invalid"
+      novalidate=""
+    >
+      <mat-form-field
+        appearance="fill"
+        class="mat-form-field mat-primary mat-form-field-type-mat-input mat-form-field-appearance-fill mat-form-field-can-float mat-form-field-has-label mat-form-field-hide-placeholder ng-untouched ng-pristine ng-invalid _mat-animation-noopable"
+      >
+        <div
+          class="mat-form-field-wrapper"
+        >
+          <div
+            class="mat-form-field-flex"
+          >
+            
+            
+            <div
+              class="mat-form-field-infix"
+            >
+              <input
+                aria-haspopup="dialog"
+                aria-invalid="false"
+                aria-required="false"
+                class="mat-datepicker-input mat-input-element mat-form-field-autofill-control ng-untouched ng-pristine ng-invalid cdk-text-field-autofill-monitored"
+                data-mat-calendar="mat-datepicker-0"
+                formcontrolname="date"
+                matinput=""
+                test-id="inputDate"
+              />
+              <mat-datepicker />
+              <span
+                class="mat-form-field-label-wrapper"
+              >
+                
+                <label
+                  class="mat-form-field-label mat-empty mat-form-field-empty"
+                >
+                  
+                  
+                  <mat-label>
+                    Date of expense
+                  </mat-label>
+                  
+                  
+                </label>
+              </span>
+            </div>
+            
+            <div
+              class="mat-form-field-suffix"
+            >
+              <mat-datepicker-toggle
+                class="mat-datepicker-toggle"
+                data-mat-calendar="mat-datepicker-0"
+                matsuffix=""
+              >
+                <button
+                  aria-haspopup="dialog"
+                  aria-label="Open calendar"
+                  class="mat-focus-indicator mat-icon-button mat-button-base _mat-animation-noopable"
+                  mat-icon-button=""
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="mat-button-wrapper"
+                  >
+                    
+                    <svg
+                      class="mat-datepicker-toggle-default-icon"
+                      fill="currentColor"
+                      focusable="false"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                    >
+                      <path
+                        d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                    matripple=""
+                  />
+                  <span
+                    class="mat-button-focus-overlay"
+                  />
+                </button>
+              </mat-datepicker-toggle>
+            </div>
+          </div>
+          
+          <div
+            class="mat-form-field-underline"
+          >
+            <span
+              class="mat-form-field-ripple"
+            />
+          </div>
+          <div
+            class="mat-form-field-subscript-wrapper"
+          >
+            
+            
+            <div
+              class="mat-form-field-hint-wrapper ng-trigger ng-trigger-transitionMessages"
+              style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+            >
+              
+              <div
+                class="mat-form-field-hint-spacer"
+              />
+            </div>
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field
+        appearance="fill"
+        class="mat-form-field mat-primary mat-form-field-type-mat-input mat-form-field-appearance-fill mat-form-field-can-float mat-form-field-has-label mat-form-field-hide-placeholder ng-untouched ng-pristine ng-invalid _mat-animation-noopable"
+      >
+        <div
+          class="mat-form-field-wrapper"
+        >
+          <div
+            class="mat-form-field-flex"
+          >
+            
+            
+            <div
+              class="mat-form-field-infix"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                class="mat-input-element mat-form-field-autofill-control ng-untouched ng-pristine ng-invalid cdk-text-field-autofill-monitored"
+                formcontrolname="amount"
+                matinput=""
+                test-id="inputAmount"
+                type="number"
+                value="Sushi"
+              />
+              <span
+                class="mat-form-field-label-wrapper"
+              >
+                
+                <label
+                  class="mat-form-field-label mat-empty mat-form-field-empty"
+                >
+                  
+                  
+                  <mat-label>
+                    Amount
+                  </mat-label>
+                  
+                  
+                </label>
+              </span>
+            </div>
+            
+          </div>
+          
+          <div
+            class="mat-form-field-underline"
+          >
+            <span
+              class="mat-form-field-ripple"
+            />
+          </div>
+          <div
+            class="mat-form-field-subscript-wrapper"
+          >
+            
+            
+            <div
+              class="mat-form-field-hint-wrapper ng-trigger ng-trigger-transitionMessages"
+              style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+            >
+              
+              <div
+                class="mat-form-field-hint-spacer"
+              />
+            </div>
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field
+        appearance="fill"
+        class="mat-form-field mat-primary mat-form-field-type-mat-select mat-form-field-appearance-fill mat-form-field-can-float mat-form-field-has-label mat-form-field-hide-placeholder ng-untouched ng-pristine ng-invalid _mat-animation-noopable"
+      >
+        <div
+          class="mat-form-field-wrapper"
+        >
+          <div
+            class="mat-form-field-flex"
+          >
+            
+            
+            <div
+              class="mat-form-field-infix"
+            >
+              <mat-select
+                aria-autocomplete="none"
+                aria-disabled="false"
+                aria-expanded="false"
+                aria-haspopup="true"
+                aria-invalid="false"
+                aria-required="false"
+                class="mat-select mat-select-empty ng-untouched ng-pristine ng-invalid"
+                formcontrolname="category"
+                role="combobox"
+                tabindex="0"
+                test-id="inputCategory"
+              >
+                <div
+                  cdk-overlay-origin=""
+                  class="mat-select-trigger"
+                >
+                  <div
+                    class="mat-select-value"
+                  >
+                    
+                    <span
+                      class="mat-select-placeholder mat-select-min-line"
+                    >
+                      
+                    </span>
+                    
+                  </div>
+                  <div
+                    class="mat-select-arrow-wrapper"
+                  >
+                    <div
+                      class="mat-select-arrow"
+                    />
+                  </div>
+                </div>
+                
+              </mat-select>
+              <span
+                class="mat-form-field-label-wrapper"
+              >
+                
+                <label
+                  class="mat-form-field-label mat-empty mat-form-field-empty"
+                >
+                  
+                  
+                  <mat-label>
+                    Expense category
+                  </mat-label>
+                  
+                  
+                </label>
+              </span>
+            </div>
+            
+          </div>
+          
+          <div
+            class="mat-form-field-underline"
+          >
+            <span
+              class="mat-form-field-ripple"
+            />
+          </div>
+          <div
+            class="mat-form-field-subscript-wrapper"
+          >
+            
+            
+            <div
+              class="mat-form-field-hint-wrapper ng-trigger ng-trigger-transitionMessages"
+              style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+            >
+              
+              <div
+                class="mat-form-field-hint-spacer"
+              />
+            </div>
+          </div>
+        </div>
+      </mat-form-field>
+      <button
+        color="primary"
+        mat-raised-button=""
+        test-id="buttonSubmit"
+        type="submit"
+      >
+        Add expense
+      </button>
+    </form>
+  </section>
+</app-expense-form>
+`;
