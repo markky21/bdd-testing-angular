@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should display page components 1`] = `
+<app-root>
+  <app-header /><app-list-of-expenses />
+</app-root>
+`;

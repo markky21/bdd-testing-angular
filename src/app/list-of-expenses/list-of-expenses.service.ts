@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, concat, Observable, Subject } from 'rxjs';
-import * as moment from 'moment';
+import moment from 'moment';
 import { NgxIndexedDBService, ObjectStoreMeta } from 'ngx-indexed-db';
 import { Expense } from './list-of-expenses.model';
 import { filter, map, mergeMap, take, tap } from 'rxjs/operators';

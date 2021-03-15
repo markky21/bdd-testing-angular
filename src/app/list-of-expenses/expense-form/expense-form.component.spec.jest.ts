@@ -10,8 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ListOfExpensesService } from '../list-of-expenses.service';
 import { of } from 'rxjs';
-import { getTestScheduler } from 'jasmine-marbles';
 import { ExpenseCategory } from '../list-of-expenses.model';
+import { ListOfExpensesServiceStub } from '../list-of-expenses.service.stub';
 
 // NOTE: In Angular Component tests we should mainly focus on testing component DOM structure changes
 // and less on how things are implemented.
@@ -19,7 +19,7 @@ import { ExpenseCategory } from '../list-of-expenses.model';
 describe('ExpenseFormComponent', () => {
   let component: ExpenseFormComponent;
   let fixture: ComponentFixture<ExpenseFormComponent>;
-  let service: jasmine.SpyObj<ListOfExpensesService>;
+  let service: ListOfExpensesService;
   let overlay: Overlay;
   let overlayContainer: OverlayContainer;
 
@@ -34,12 +34,7 @@ describe('ExpenseFormComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ExpenseFormComponent],
-      providers: [
-        {
-          provide: ListOfExpensesService,
-          useValue: jasmine.createSpyObj('ListOfExpensesService', ['dbAdd$']),
-        },
-      ],
+      providers: [{ provide: ListOfExpensesService, useClass: ListOfExpensesServiceStub }],
       imports: [
         MatInputModule,
         MatDatepickerModule,
@@ -50,7 +45,7 @@ describe('ExpenseFormComponent', () => {
       ],
     }).compileComponents();
 
-    service = TestBed.inject(ListOfExpensesService) as jasmine.SpyObj<ListOfExpensesService>;
+    service = TestBed.inject(ListOfExpensesService);
     overlayContainer = TestBed.inject(OverlayContainer);
     overlay = TestBed.inject(Overlay);
 
@@ -59,21 +54,12 @@ describe('ExpenseFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should display section title', () => {
-    getTestScheduler().flush();
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('h4').innerHTML).toContain('Add new expense');
-  });
-
-  it('should user to see form on init', () => {
-    expect(getInputDateSelector()).toBeTruthy();
-    expect(getInputAmountSelector()).toBeTruthy();
-    expect(getInputCategorySelector()).toBeTruthy();
-    expect(getSubmitButton()).toBeTruthy();
+  it('should display page components', () => {
+    expect(fixture).toMatchSnapshot();
   });
 
   it('should user be able to add new expense', () => {
-    const spyDbAdd = service.dbAdd$.and.callFake(() => {
+    const spyDbAdd = spyOn(service, 'dbAdd$').and.callFake(() => {
       return of([]);
     });
     // Set Date
@@ -95,6 +81,6 @@ describe('ExpenseFormComponent', () => {
     // Submit form
     getSubmitButton()?.click();
     fixture.detectChanges();
-    expect(spyDbAdd).toHaveBeenCalledOnceWith({ date: '', amount: 123, category: ExpenseCategory.HOME });
+    expect(spyDbAdd).toHaveBeenCalledWith({ date: '', amount: 123, category: ExpenseCategory.HOME });
   });
 });

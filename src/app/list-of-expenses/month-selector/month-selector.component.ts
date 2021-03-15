@@ -4,7 +4,7 @@ import { ListOfExpensesService } from '../list-of-expenses.service';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DATE_FORMATS } from '../../utils/dates.utils';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
-import * as moment from 'moment';
+import moment from 'moment';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';

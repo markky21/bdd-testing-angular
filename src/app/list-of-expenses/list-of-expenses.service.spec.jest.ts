@@ -2,9 +2,8 @@ import { ListOfExpensesService } from './list-of-expenses.service';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { getMockExpenseList, mockExpenseList } from './list-of-expenses.mocks';
 import { Expense } from './list-of-expenses.model';
-import { cold } from 'jasmine-marbles';
+import { cold } from 'jest-marbles';
 import MockDate from 'mockdate';
-import moment from 'moment';
 
 // NOTE: To be able to test class methods we don't need to use TestBed
 // for set application environment (dependencies in this case).
@@ -16,11 +15,23 @@ import moment from 'moment';
 // NOTE: With our tests we should mock as much as possible.
 // Also we should keep on mind that we should not test functionalities of external libraries.
 
+jest.mock('ngx-indexed-db', () => {
+  return {
+    NgxIndexedDBService: jest.fn().mockImplementation(() => {
+      return {
+        add: jest.fn().mockReturnValue(cold('a')),
+        getAll: jest.fn().mockReturnValue(cold('b')),
+        createObjectStore: jest.fn(),
+      };
+    }),
+  };
+});
+
 describe('ListOfExpensesService', () => {
   const currentDate = new Date(2020, 3, 21);
 
   let service: ListOfExpensesService;
-  let spyNgxIndexedDBService: jasmine.SpyObj<NgxIndexedDBService<Expense>>;
+  let spyNgxIndexedDBService: NgxIndexedDBService;
 
   beforeAll(() => {
     MockDate.set(currentDate);
@@ -29,34 +40,31 @@ describe('ListOfExpensesService', () => {
     MockDate.reset();
   });
   beforeEach(() => {
-    spyNgxIndexedDBService = jasmine.createSpyObj('NgxIndexedDBService', ['createObjectStore', 'getAll', 'add']);
+    spyNgxIndexedDBService = new NgxIndexedDBService(null as any, null);
     service = new ListOfExpensesService(spyNgxIndexedDBService);
   });
 
   describe('expenses history', () => {
     it('should user be able do register new expense', () => {
-      spyNgxIndexedDBService.add.and.returnValue(cold('a'));
-      spyNgxIndexedDBService.getAll.and.returnValue(cold('b'));
-
       expect(service.dbAdd$(mockExpenseList[0])).toBeObservable(cold('(b|)'));
-      expect(spyNgxIndexedDBService.add).toHaveBeenCalledOnceWith('expenses', mockExpenseList[0]);
+      expect(spyNgxIndexedDBService.add).toHaveBeenCalledWith('expenses', mockExpenseList[0]);
     });
 
     it('should return expenses for given month', () => {
-      const selectedMonth$ = cold(' --a--b---', { a: moment().add(-1, 'month'), b: moment() });
+      const selectedMonth$ = cold(' --a--b---', { a: new Date().setMonth(new Date().getMonth() - 1), b: new Date() });
       const getAllStream$ = cold('  -a-----b-', {
-        a: getMockExpenseList().map((e) => ({ ...e, date: moment(e.date).add(-1, 'month') })),
+        a: getMockExpenseList().map((e) => ({ ...e, date: new Date(e.date).setMonth(new Date().getMonth() - 1) })),
         b: getMockExpenseList(),
       });
       const expectedStream$ = cold('--a--b-c-', {
-        a: getMockExpenseList().map((e) => ({ ...e, date: moment(e.date).add(-1, 'month') })),
+        a: getMockExpenseList().map((e) => ({ ...e, date: new Date(e.date).setMonth(new Date().getMonth() - 1) })),
         b: [],
         c: getMockExpenseList(),
       });
 
       // @ts-ignore
       service.selectedMonth$ = selectedMonth$;
-      spyNgxIndexedDBService.getAll.and.returnValue(getAllStream$);
+      spyNgxIndexedDBService.getAll = jest.fn().mockReturnValue(getAllStream$);
 
       expect(service.dbGetAllFilteredBySelectedMonth$()).toBeObservable(expectedStream$);
     });
